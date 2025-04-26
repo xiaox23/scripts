@@ -1,4 +1,20 @@
-# version instruction
+# Read me
+
+## 仓库下载
+
+### 创建文件夹
+```
+mkdir -p real
+cd real
+```
+
+### 下载scripts仓库
+```
+git clone https://github.com/xiaox23/scripts.git
+```
+
+## 下载Tac3D仓库
+
 
 记得先激活夹爪
 ```
