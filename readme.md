@@ -140,6 +140,7 @@ cd collect_RGBD
 python pyrealsense2/realsense.py
 cd ..
 ```
+### 3. 机械臂
 
 ## 实机数据采集脚本使用说明
 
@@ -147,6 +148,11 @@ cd ..
 ```
 python Tac-3D/DexHand-SDK-v1.1/pyDexHandClient/examples/activate_service.py
 ```
+
+### 1. H0 version
+
+
+
 
 ### 1. F0 version
 版本功能：
@@ -219,3 +225,19 @@ python scripts/D07duiqi.py
 ```
 
 对齐根部（无延迟信号）和触觉marker信号。
+
+## 实机数据处理脚本
+### 环境配置
+```
+# CUDA 11.8
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
+```
+```
+git clone https://github.com/erikwijmans/Pointnet2_PyTorch.git
+```
+```
+cd Pointnet2_PyTorch/pointnet2_ops_lib
+```
+```
+python setup.py install
+```
