@@ -162,35 +162,35 @@ sh scripts/run_Hscripts.sh
 
 按下`z`使机械臂开始抓取
 
-![alt text](image.png)
+![alt text](readme_pic/image_.png)
 
 按下`f`使机械臂松手
 
-![alt text](image-1.png)
+![alt text](readme_pic/image-1.png)
 
 按下`q`退出触觉程序
 
-![alt text](image-2.png)
+![alt text](readme_pic/image-2.png)
 
 #### b. 视觉界面
 
 按下`s`使得相机停止数据存储
 
-![alt text](image-3.png)
+![alt text](readme_pic/image-3.png)
 
 #### c. 轨迹界面
 
 按下`o`使得机械臂退出程序
 
-![alt text](image-4.png)
+![alt text](readme_pic/image-4.png)
 
 #### d. 可视化界面
 
 包含一个terminal和一个图窗，**关掉图窗退出功能**
 
-![alt text](image-5.png)
+![alt text](readme_pic/image-5.png)
 
-![alt text](image-6.png)
+![alt text](readme_pic/image-6.png)
 
 ### 2. 数据处理脚本
 
