@@ -1,6 +1,6 @@
 # Read me
 
-## 仓库下载
+## 一、仓库下载
 
 ### 1. 创建文件夹
 ```
@@ -25,7 +25,7 @@ git clone https://github.com/xiaox23/Tac-3D.git
 git clone https://github.com/xiaox23/collect_RGBD.git
 ```
 
-## 环境和真机setup
+## 二、环境和真机setup
 ### 1. 触觉
 ```
 cd Tac-3D
@@ -142,102 +142,93 @@ cd ..
 ```
 ### 3. 机械臂
 
-## 实机数据采集脚本使用说明
+## 三、实机数据采集脚本使用说明
 
 记得先激活夹爪
 ```
 python Tac-3D/DexHand-SDK-v1.1/pyDexHandClient/examples/activate_service.py
 ```
 
-### 1. H0 version
-
-
-
-
-### 1. F0 version
-版本功能：
+### 1. 采集脚本
 
 ```
-sh scripts/run_Fscripts.sh
+# 运行触觉+视觉的采集代码，但是记得修改实验次数！！！每次数据采集都要修改
+sh scripts/run_Hscripts.sh
 ```
 
-运行触觉+视觉的采集代码，但是记得修改实验次数！！！每次数据采集都要修改
+会弹出四个terminal和一个二维可视化marker_flow形变力的界面：
+
+#### a. 触觉界面
+
+按下`z`使机械臂开始抓取
+
+![alt text](image.png)
+
+按下`f`使机械臂松手
+
+![alt text](image-1.png)
+
+按下`q`退出触觉程序
+
+![alt text](image-2.png)
+
+#### b. 视觉界面
+
+按下`s`使得相机停止数据存储
+
+![alt text](image-3.png)
+
+#### c. 轨迹界面
+
+按下`o`使得机械臂退出程序
+
+![alt text](image-4.png)
+
+#### d. 可视化界面
+
+包含一个terminal和一个图窗，**关掉图窗退出功能**
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
+### 2. 数据处理脚本
+
+#### a. 数据对齐
+```
+python scripts/H05pair_data.py
+```
+
+对于原始信号做一个对齐处理，把视觉数据和触觉数据和轨迹一起保存在新的文件夹`data_save/combined_data`中。认为夹爪抓紧时候为起点。
+
+#### b. 数据可视化
+```
+python scripts/H06vis_data.py
+```
+
+对于匹配之后的数据做可视化，然后把图片存在`data_save1/cal_plots`中。认为夹爪抓紧时候为起点。
+
+
+## 四、常见问题
+
+### 1. 机械臂
+
+**报错清除**：按下**急停**，然后命令行清除报错：
 
 ```
-python scripts/F03pair_data.py
+python xArm-Python-SDK/control/clearn_error.py
 ```
 
-对于原始信号做一个对齐处理，把视觉数据和触觉数据一起保存在新的文件夹```data_save/combined_data```中。认为夹爪抓紧时候为起点，删掉之前的数据。
+### 2. Tac3D
 
-```
-python scripts/F04cal_data.py
-```
-
-调整数据格式，然后处理数据，使得能够绘制markerflow的图像。新数据保存在```data_save/cal_data```。
-
-```
-python scripts/F05vis_data.py
-```
-
-绘图，保存在```data_save/cal_plots```。
-
-### 2. 常见问题
 检查端口占用
 ```
 sudo lsof -i :9988
 ```
-清除报错
-```
-python Tac-3D/DexHand-SDK-v1.1/pyDexHandClient/control/safe.py
-```
-### C0 version
-版本功能：
+然后`kill -9 进程号`杀死程序
 
-```
-sh scripts/run_Cscripts.sh
-```
 
-同时运行视觉和触觉的采集代码。
 
-```
-python scripts/C03pair_data.py
-```
 
-以视觉代码为基准，对齐最近帧的触觉数据，并且保存成新的pickle文件。
 
-```
-python scripts/C04vis_data.py
-```
 
-可视化视觉数据和触觉传感器的形貌数据。
-
-### D0 version
-版本功能：
-
-```
-python scripts/C01TacData.py --folder_path data_save/tac_data
-```
-
-运行触觉的采集代码，会记录下夹爪的根部力信号和位置信号。也会记录下夹爪之间的marker形貌、位移变化、受力和平均三维力和平均三维力矩。
-
-```
-python scripts/D07duiqi.py
-```
-
-对齐根部（无延迟信号）和触觉marker信号。
-
-## 实机数据处理脚本
-### 环境配置
-```
-# CUDA 11.8
-pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
-```
-```
-git clone https://github.com/erikwijmans/Pointnet2_PyTorch.git
-```
-```
-cd Pointnet2_PyTorch/pointnet2_ops_lib
-```
-```
-python setup.py install
-```
