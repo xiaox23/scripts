@@ -25,6 +25,12 @@ git clone https://github.com/xiaox23/Tac-3D.git
 git clone https://github.com/xiaox23/collect_RGBD.git
 ```
 
+### 5. 下载xarm仓库
+
+```
+git clone https://github.com/xiaox23/xArm-Python-SDK.git
+```
+
 ## 二、环境和真机setup
 ### 1. 触觉
 ```
@@ -141,6 +147,36 @@ python pyrealsense2/realsense.py
 cd ..
 ```
 ### 3. 机械臂
+
+```
+cd xArm-Python-SDK
+python setup.py install
+cd ..
+```
+
+获取位置信息
+
+```
+python xArm-Python-SDK/control/get_info.py
+```
+
+示教模式
+
+```
+python xArm-Python-SDK/control/teach.py
+```
+
+home模式
+
+```
+python xArm-Python-SDK/control/home.py
+```
+
+3D鼠标遥操测试
+
+```
+python xArm-Python-SDK/control/teach.py
+```
 
 ## 三、实机数据采集脚本使用说明
 

@@ -43,6 +43,8 @@ def process_and_plot_cal_data(input_base_folder, output_base_folder, x_range=(-5
             # 获取视觉数据：RGB 和深度图像
             depth_image = data.get("depth_image")
             color_image = data.get("color_image")
+            depth_image515 = data.get("depth_image515")
+            color_image515 = data.get("color_image515")
 
             # 获取触觉数据
             tac_data = data.get("tac_data", {})
@@ -62,11 +64,20 @@ def process_and_plot_cal_data(input_base_folder, output_base_folder, x_range=(-5
 
             # 绘制视觉图像
             try:
+                # 绘制原始视觉图像
                 depth_colormap = cv2.applyColorMap(cv2.convertScaleAbs(depth_image, alpha=0.03), cv2.COLORMAP_JET)
                 combined_image = np.hstack((color_image, depth_colormap))
                 combined_output_path = os.path.join(output_folder, f"{file_name}_combined_visual.png")
                 cv2.imwrite(combined_output_path, combined_image)
                 print(f"Saved combined visual image: {combined_output_path}")
+
+                # 绘制515视觉图像
+                depth_colormap515 = cv2.applyColorMap(cv2.convertScaleAbs(depth_image515, alpha=0.03), cv2.COLORMAP_JET)
+                combined_image515 = np.hstack((color_image515, depth_colormap515))
+                combined_output_path515 = os.path.join(output_folder, f"{file_name}_combined_visual515.png")
+                cv2.imwrite(combined_output_path515, combined_image515)
+                print(f"Saved combined visual image 515: {combined_output_path515}")
+
             except Exception as e:
                 print(f"Error saving visual image for {file_name}: {e}")
 
